@@ -9,16 +9,32 @@ import Switch from "@material-ui/core/Switch";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles/NavBarStyles";
 import { ThemeContext } from "./contexts/ThemeContext";
-
+import { LanguageContext } from "./contexts/LanguageContext";
+const content = {
+  english: {
+    search: "Search",
+    flag: "🇬🇧",
+  },
+  french: {
+    search: "Chercher",
+    flag: "🇫🇷",
+  },
+  spanish: {
+    search: "Buscar",
+    flag: "🇪🇸",
+  },
+};
 function Navbar(props) {
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const { language } = useContext(LanguageContext);
+  const { search, flag } = content[language];
   const { classes } = props;
   return (
     <div className={classes.root}>
       <AppBar position="static" color={isDarkMode ? "default" : "primary"}>
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit">
-            <span>🇫🇷</span>
+            <span>{flag}</span>
           </IconButton>
           <Typography className={classes.title} variant="h6" color="inherit">
             App Title
